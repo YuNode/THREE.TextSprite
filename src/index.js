@@ -9,22 +9,22 @@ import getOptimalFontSize from './getOptimalFontSize';
 
 export default class extends Sprite {
 	constructor({
-		textSize = 1,
-		redrawInterval = 1,
-		minFontSize = 0,
-		maxFontSize = Infinity,
 		material = {},
+		maxFontSize = Infinity,
+		minFontSize = 0,
+		redrawInterval = 1,
+		textSize = 1,
 		texture = {},
 	} = {}) {
 		super(new SpriteMaterial({
 			...material,
 			map: new TextTexture(texture),
 		}));
-		this.textSize = textSize;
-		this.redrawInterval = redrawInterval;
-		this.minFontSize = minFontSize;
-		this.maxFontSize = maxFontSize;
 		this.lastRedraw = 0;
+		this.maxFontSize = maxFontSize;
+		this.minFontSize = minFontSize;
+		this.redrawInterval = redrawInterval;
+		this.textSize = textSize;
 	}
 
 	get isTextSprite() {
