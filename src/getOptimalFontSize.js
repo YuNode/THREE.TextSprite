@@ -1,20 +1,21 @@
-import {Vector3} from 'three';
+import * as THREE from 'three';
 
-let objectWorldPosition = new Vector3();
-let cameraWorldPosition = new Vector3();
-let objectWorldScale = new Vector3();
+let cameraWorldPosition = new THREE.Vector3();
+let spriteWorldPosition = new THREE.Vector3();
+let spriteWorldScale = new THREE.Vector3();
 
-export default function(object, renderer, camera) {
-	if (renderer.domElement.width && renderer.domElement.height && object.material.map.textLines.length) {
-		let distance = object.getWorldPosition(objectWorldPosition).distanceTo(camera.getWorldPosition(cameraWorldPosition));
-		if (distance) {
-                        // Get the height of the view in world units at the depth of the object
-                        let vFOV = camera.fov * Math.PI / 180; 
-                        let fullHeight = 2 * Math.tan( vFOV / 2 ) * Math.abs( distance );
-
-                        let heightInPixels = (object.getWorldScale(objectWorldScale).y / fullHeight) * renderer.domElement.height;
-			if (heightInPixels) {
-				return Math.round(heightInPixels / object.material.map.imageHeight);
+export default function(sprite, renderer, camera) {
+	if (renderer.domElement.width && renderer.domElement.height && sprite.material.map.textHeight) {
+		sprite.getWorldPosition(spriteWorldPosition);
+		camera.getWorldPosition(cameraWorldPosition);
+		let worldDistanceBetweenSpriteAndCamera = spriteWorldPosition.distanceTo(cameraWorldPosition);
+		let xxx = 2 * Math.tan(THREE.Math.degToRad(camera.fov) / 2) * worldDistanceBetweenSpriteAndCamera;
+		// todo: camera.getEffectiveFOV()
+		if (xxx) {
+			sprite.getWorldScale(spriteWorldScale);
+			let spriteHeightInPixels = spriteWorldScale.y * renderer.domElement.height / xxx;
+			if (spriteHeightInPixels) {
+				return Math.round(spriteHeightInPixels / sprite.material.map.imageHeight);
 			}
 		}
 	}

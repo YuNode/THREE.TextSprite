@@ -1,13 +1,9 @@
-import {
-	Math as THREE_Math,
-	Sprite,
-	SpriteMaterial,
-} from 'three';
-import TextTexture from 'three.texttexture';
+import * as THREE from 'three';
+import THREE_TextTexture from 'three.texttexture';
 
 import getOptimalFontSize from './getOptimalFontSize';
 
-export default class extends Sprite {
+export default class extends THREE.Sprite {
 	constructor({
 		material = {},
 		maxFontSize = Infinity,
@@ -16,9 +12,9 @@ export default class extends Sprite {
 		textSize = 1,
 		texture = {},
 	} = {}) {
-		super(new SpriteMaterial({
+		super(new THREE.SpriteMaterial({
 			...material,
-			map: new TextTexture(texture),
+			map: new THREE_TextTexture(texture),
 		}));
 		this.lastRedraw = 0;
 		this.maxFontSize = maxFontSize;
@@ -61,8 +57,8 @@ export default class extends Sprite {
 	redrawNow(renderer, camera) {
 		this.updateScale();
 		this.material.map.autoRedraw = true;
-		this.material.map.fontSize = THREE_Math.clamp(
-			THREE_Math.ceilPowerOfTwo(
+		this.material.map.fontSize = THREE.Math.clamp(
+			THREE.Math.ceilPowerOfTwo(
 				getOptimalFontSize(this, renderer, camera)
 			),
 			this.minFontSize,
