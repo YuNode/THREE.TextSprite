@@ -17,7 +17,7 @@ An instance of `TextSprite` automatically computes the optimal font size dependi
 ### npm
 
 ```shell
-npm install three.textsprite
+npm i three.textsprite
 ```
 
 ### ES module
