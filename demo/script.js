@@ -1,17 +1,7 @@
 (function() {
 
-	var getRandomText = function() {
-		return Array
-			.from({length: chance.weighted([1, 2, 3], [2, 3, 1])})
-			.map(function() {
-				return Array
-					.from({length: chance.weighted([1, 2, 3], [2, 3, 1])})
-					.map(function() {
-						return chance.word();
-					})
-					.join(' ');
-			})
-			.join('\n');
+	var getRandomColor = function() {
+		return chance.color({format: 'hex'});
 	};
 	var getRandomFontFamily = function() {
 		return chance.pickone([
@@ -30,8 +20,18 @@
 			'"Lucida Console", Monaco, monospace',
 		]);
 	};
-	var getRandomColor = function() {
-		return chance.color({format: 'hex'});
+	var getRandomText = function() {
+		return Array
+			.from({length: chance.weighted([1, 2, 3], [2, 3, 1])})
+			.map(function() {
+				return Array
+					.from({length: chance.weighted([1, 2, 3], [2, 3, 1])})
+					.map(function() {
+						return chance.word();
+					})
+					.join(' ');
+			})
+			.join('\n');
 	};
 	var getRandomTextSize = function() {
 		return chance.floating({min: 1, max: Math.pow(2, 8)});

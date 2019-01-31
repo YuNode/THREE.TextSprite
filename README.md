@@ -64,7 +64,7 @@ let sprite = new THREE.TextSprite({
   textSize: 10,
   texture: {
     fontFamily: 'Arial, Helvetica, sans-serif',
-    text: 'Carpe Diem',
+    text: 'Be happy. Be bright. Be you.',
   },  
 });
 scene.add(sprite);
@@ -88,7 +88,7 @@ The size of the text.
 
 `.redrawInterval = 1`
 
-The minimum time that must elapse before the canvas is redrawn. If 0, the canvas is redrawn immediately whenever `TextSprite` is rendered, otherwise the redrawing is deferred.
+The minimum time that must elapse before the canvas is redrawn.
 
 ---
 

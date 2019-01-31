@@ -33,8 +33,8 @@ export default class extends THREE.Sprite {
 
 	updateScale() {
 		this.scale
-			.set(this.material.map.imageAspect, 1, 1)
-			.multiplyScalar(this.textSize * this.material.map.imageHeight);
+			.set(this.material.map.image.width / this.material.map.image.height, 1, 1)
+			.multiplyScalar(this.textSize * this.material.map.height);
 	}
 
 	updateMatrix(...args) {
@@ -56,7 +56,6 @@ export default class extends THREE.Sprite {
 
 	redrawNow(renderer, camera) {
 		this.updateScale();
-		this.material.map.autoRedraw = true;
 		this.material.map.fontSize = THREE.Math.clamp(
 			THREE.Math.ceilPowerOfTwo(
 				getOptimalFontSize(this, renderer, camera)
