@@ -44,6 +44,7 @@
 	var camera = new THREE.PerspectiveCamera(45, 1, 1, Math.pow(2, 17));
 	camera.position.set(0, 0, Math.pow(2, 14));
 	var redrawInterval = 1;
+	var loadFontFace = function() {	};
 	var sprites = Array
 		.from({length: Math.pow(2, 7)})
 		.map(function() {
@@ -56,6 +57,7 @@
 				texture: {
 					text: getRandomText(),
 					fontFamily: getRandomFontFamily(),
+					loadFontFace: loadFontFace,
 				},
 			});
 			(function() {

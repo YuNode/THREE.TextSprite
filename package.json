@@ -27,14 +27,14 @@
 		"prepublishOnly": "npm run build"
 	},
 	"dependencies": {
-		"three.texttexture": "^19.0.0"
+		"three.texttexture": "^20.0.0"
 	},
 	"devDependencies": {
-		"rollup": "^1.1.2",
+		"rollup": "^1.10.1",
 		"rollup-plugin-buble": "^0.19.6",
-		"rollup-plugin-terser": "^4.0.3"
+		"rollup-plugin-terser": "^4.0.4"
 	},
 	"peerDependencies": {
-		"three": "^0.100.0"
+		"three": "^0.104.0"
 	}
 }
